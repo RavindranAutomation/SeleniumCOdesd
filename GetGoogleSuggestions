@@ -1,0 +1,39 @@
+package org.seleniumpractice.java;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class GetGoogleSuggestions {
+
+	public static void main(String[] args) throws InterruptedException {
+		/*
+		 After executing the sendkeys, in order to obtain the Google suggestions, 
+		 we must find the listbox's with following li tagname's  xpath so that we may iterate the suggestions 
+		 using the foreach command.
+		 */
+
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://google.com");
+		WebElement search = driver.findElement(By.id("APjFqb"));
+		search.sendKeys("Elon Musk");
+		Thread.sleep(3000);
+
+		List<WebElement> findElements = driver.findElements(By.xpath("//*[@role='listbox']//following::li"));
+		for (WebElement suggestionsList : findElements) {
+			System.out.println(suggestionsList.getText());
+
+		}
+
+
+
+	}
+
+}
