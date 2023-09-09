@@ -1,0 +1,45 @@
+package org.seleniumpractice.java;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class QuitvsClose {
+
+	public static void main(String[] args) throws InterruptedException {
+
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.leafground.com/window.xhtml");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//span[text()='Open']")).click();
+		
+		Thread.sleep(2000);
+//		driver.close();
+		
+		driver.quit();
+		
+//		Close method will close the driver focused window
+//		Quite method will close entire opened windows.
+		
+		/*
+		 * This is the very basic and a very frequently asked questions in Selenium
+		 * interview. Almost everyone can recite the differences between quit and close.
+		 * But most of us have misunderstood that, the current browser window in the
+		 * sense which is active and is on focus for the close method. This is not the
+		 * case. The close method will close the browser which the driver has focus.
+		 * Unless we switch the focus to the newly opened window, the driver has focused
+		 * on the old window and the close method will close the old window only not the
+		 * newly opened one.
+		 */
+
+		
+
+
+	}
+
+}
