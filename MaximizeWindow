@@ -1,0 +1,26 @@
+package org.seleniumpractice.java;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+public class MaximizeWindow {
+
+	public static void main(String[] args) {
+
+		/*
+		 * Different ways of Maximize the browser window
+		 * 1. maximize() method 
+		 * 2. use of Dimension class and window.setSize method
+		 * 3. ChromeOptions("--start-maximized")
+		 */
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.leafground.com/window.xhtml");
+		//		driver.manage().window().maximize();
+
+		Dimension resolution = new Dimension(1296, 696);
+		
+		driver.manage().window().setSize(resolution);
+	}
+
+}
