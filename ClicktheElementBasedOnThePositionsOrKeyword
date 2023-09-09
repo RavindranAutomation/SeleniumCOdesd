@@ -1,0 +1,38 @@
+package org.seleniumpractice.java;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class ClicktheElementBasedOnThePositionsOrKeyword {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://google.com");
+		WebElement search = driver.findElement(By.id("APjFqb"));
+		search.sendKeys("Money Heist");
+		Thread.sleep(3000);
+		//		int position =0;
+		List<WebElement> suggestion =driver.findElements(By.xpath("//*[@role='listbox']//following::li"));
+		for (WebElement webElement : suggestion) {
+			String text = webElement.getText();	
+			System.out.println(text);
+			//			position++;
+			//			if (position==4) {
+			//				webElement.click();
+			//				break;
+			if(text.contains("isaidub")) {
+				webElement.click();
+				break;
+			}
+		}
+	}
+
+}
+
