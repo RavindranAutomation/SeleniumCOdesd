@@ -1,0 +1,47 @@
+package org.seleniumpractice.java;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class DifferentwaysOfPressEnterButton {
+
+	public static void main(String[] args) throws AWTException {
+		
+//		Different way to perform search in Google.
+//		-----------------------------------------
+//		1. submit()
+//		2. sendKeys(Keys.Enter)
+//		3. \n
+//		4. Robot class
+	
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("https://google.com");
+		driver.manage().window().maximize();
+		WebElement searchBox = driver.findElement(By.id("APjFqb"));
+//		searchBox.sendKeys("India");
+//		searchBox.submit();
+		
+//		searchBox.sendKeys("India" + Keys.ENTER);
+		
+//		searchBox.sendKeys("America  \n");
+	
+		
+		searchBox.sendKeys("India");
+		Robot robot = new Robot();
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyPress(KeyEvent.VK_ENTER);
+	
+	}
+
+}
